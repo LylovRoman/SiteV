@@ -16,4 +16,10 @@ Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register
 Route::post('/auth', [\App\Http\Controllers\AuthController::class, 'auth']);
 Route::get('/tour', [\App\Http\Controllers\FlightController::class, 'searchAirports']);
 Route::get('/flight', [\App\Http\Controllers\FlightController::class, 'searchFlights']);
-Route::middleware('auth:api')->get('/');
+Route::post('/booking', [\App\Http\Controllers\BookingController::class, 'create']);
+Route::middleware('auth:api')->group(function () {
+    Route::get('/booking/{code}', [\App\Http\Controllers\BookingController::class, 'check']);
+    Route::get('/user/booking', [\App\Http\Controllers\BookingController::class, 'checkMy']);
+    Route::get('/user', [\App\Http\Controllers\UserController::class, 'self']);
+});
+

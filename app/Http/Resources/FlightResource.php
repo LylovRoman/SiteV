@@ -19,7 +19,15 @@ class FlightResource extends JsonResource
             'id' => $this->id,
             'name' => "{$this->from->airport} - {$this->to->airport}",
             'from' => AirportResource::make($this->from),
-            'city' => AirportResource::make($this->to),
+            'to' => AirportResource::make($this->to),
+            'start_date' => [
+                'date' => $this->from_date,
+                'time' => $this->time_from
+            ],
+            'end_date' => [
+                'date' => $this->to_date,
+                'time' => $this->time_to
+            ],
             'cost' => $this->cost * $request->passengers
         ];
     }

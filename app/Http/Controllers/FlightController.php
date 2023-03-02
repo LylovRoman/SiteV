@@ -20,7 +20,7 @@ class FlightController extends Controller
             'data' => [
                 'items' => AirportResource::collection($airports)
             ]
-        ]);
+        ], 200);
     }
 
     public function searchFlights(FlightRequest $request)
@@ -35,6 +35,6 @@ class FlightController extends Controller
             'data' => [
                 'items' => FlightResource::collection($flights)
             ]
-        ]);
+        ], 200);
     }
 }

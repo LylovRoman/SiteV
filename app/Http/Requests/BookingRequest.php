@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class FlightRequest extends FormRequest
+class BookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,13 @@ class FlightRequest extends FormRequest
     public function rules()
     {
         return [
-            'from' => 'required|integer',
-            'to' => 'required|integer',
-            'passengers' => 'required|integer|min:1|max:8',
-            'date1' => 'required|date',
-            'date2' => 'required|date'
+            'from_id' => 'required|integer',
+            'back_id' => 'required|integer',
+            'tourists' => 'required|array',
+            'tourists.*.first_name' => 'required|string',
+            'tourists.*.last_name' => 'required|string',
+            'tourists.*.birth_date' => 'required|date',
+            'tourists.*.document_number' => 'required|integer|digits_between:10,10'
         ];
     }
 
